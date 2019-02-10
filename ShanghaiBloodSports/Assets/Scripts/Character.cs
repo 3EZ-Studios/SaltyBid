@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Experimental.Input;
 
 public class Character : MonoBehaviour
 {
@@ -23,7 +24,6 @@ public class Character : MonoBehaviour
     void Start()
     {
         healthIndicator = transform.GetChild(0).GetComponent<TextMesh>();
-
     }
 
     // Update is called once per frame
@@ -37,7 +37,10 @@ public class Character : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(transform.rotation.x, FACE_RIGHT);
         }
+
     }
+
+    
 
     private Character GetOpponent()
     {

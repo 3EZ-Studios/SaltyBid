@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private State state = State.NEUTRAL;
     private bool grounded = false;
+    private InputBuffer buff = new InputBuffer();
 
     // Start is called before the first frame update
     void Start()
@@ -20,72 +21,98 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var input = Input.GetAxis("Horizontal");
-        var movement = input * speed;
 
-        if (!grounded)
-        {
-            state = State.MIDAIR;
-        }
-        else if (input < 0)
-        {
-            state = State.BACK_WALK;
-        }
-        else if (input > 0)
-        {
-            state = State.FORWARD_WALK;
-        }
-        else
-        {
-            state = State.NEUTRAL;
-        }
 
-        UpdateAnimator();
-
-        rb.velocity = new Vector3(movement, rb.velocity.y, 0);
-
-        if (Input.GetKeyDown(KeyCode.Space) && state != State.MIDAIR)
+        //empty buff -- discuss states and animation triggers
+        Consumable consumable = null;
+        if (buff.fifoBuff.TryDequeue(out consumable))
         {
-            rb.AddForce(new Vector3(0, 200, 0));
-        }
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("neutral"))
-        {
-            if (Input.GetKeyDown(KeyCode.J))
+            switch (consumable)
             {
-                animator.SetTrigger("punch");
-            }
+                case UpConsumable u:
+                    rb.AddForce(new Vector3(0, 200, 0));
+                    break;
 
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                animator.SetTrigger("low_kick");
-            }
+                case ForwardConsumable f:
+                    transform.Translate(Vector2.right * speed * Time.deltaTime);
+                    break;
 
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                animator.SetTrigger("high_kick");
-            }
-
-            if (Input.GetKey(KeyCode.O))
-            {
-                animator.SetBool("high_block", true);
-            }
-
-            if (Input.GetKey(KeyCode.L))
-            {
-                animator.SetBool("low_block", true);
+                case BackwardConsumable b:
+                    transform.Translate(Vector2.left * speed * Time.deltaTime);
+                    break;
             }
         }
 
-        if (!Input.GetKey(KeyCode.O))
-        {
-            animator.SetBool("high_block", false);
-        }
+        //fill buff
+        buff.pollKeys();
 
-        if (!Input.GetKey(KeyCode.L))
-        {
-            animator.SetBool("low_block", false);
-        }
+
+        //var input = Input.GetAxis("Horizontal");
+        //var movement = input * speed;
+
+        //if (!grounded)
+        //{
+        //    state = State.MIDAIR;
+        //}
+        //else if (input < 0)
+        //{
+        //    state = State.BACK_WALK;
+        //}
+        //else if (input > 0)
+        //{
+        //    state = State.FORWARD_WALK;
+        //}
+        //else
+        //{
+        //    state = State.NEUTRAL;
+        //}
+
+        //UpdateAnimator();
+
+        //rb.velocity = new Vector3(movement, rb.velocity.y, 0);  //walk
+
+        //if (Input.GetKeyDown(KeyCode.Space) && state != State.MIDAIR)
+        //{
+        //    rb.AddForce(new Vector3(0, 200, 0));
+        //}
+
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("neutral"))
+        //{
+        //    if (Input.GetKeyDown(KeyCode.J))
+        //    {
+        //        animator.SetTrigger("punch");
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.K))
+        //    {
+        //        animator.SetTrigger("low_kick");
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.I))
+        //    {
+        //        animator.SetTrigger("high_kick");
+        //    }
+
+        //    if (Input.GetKey(KeyCode.O))
+        //    {
+        //        animator.SetBool("high_block", true);
+        //    }
+
+        //    if (Input.GetKey(KeyCode.L))
+        //    {
+        //        animator.SetBool("low_block", true);
+        //    }
+        //}
+
+        //if (!Input.GetKey(KeyCode.O))
+        //{
+        //    animator.SetBool("high_block", false);
+        //}
+
+        //if (!Input.GetKey(KeyCode.L))
+        //{
+        //    animator.SetBool("low_block", false);
+        //}
     }
 
     private void UpdateAnimator()
