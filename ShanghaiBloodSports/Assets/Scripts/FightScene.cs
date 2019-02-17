@@ -11,7 +11,6 @@ public class FightScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // fightState = fightStateObject.GetComponent<FightState>();
         fightState = GameObject.FindWithTag("FightState").GetComponent<FightState>();
     }
 

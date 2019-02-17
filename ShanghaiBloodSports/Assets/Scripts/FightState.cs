@@ -15,7 +15,7 @@ public class FightState : MonoBehaviour
     public FightScene fightComponent;
     private ShopScene shopComponent;
 
-    private readonly int roundsToWin = 5;
+    const int ROUNDS_TO_WIN = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,11 @@ public class FightState : MonoBehaviour
 
         p1Score = 0;
         p2Score = 0;
+    }
+
+    public int GetRoundsToWin()
+    {
+        return ROUNDS_TO_WIN;
     }
 
     public void SetShopComponent(ShopScene component)
@@ -69,14 +74,13 @@ public class FightState : MonoBehaviour
 
     bool CheckWin()
     {
-        return p1Score == roundsToWin || p2Score == roundsToWin;
+        return p1Score == ROUNDS_TO_WIN || p2Score == ROUNDS_TO_WIN;
     }
 
     void OnRoundEnd()
     {
         SceneManager.SetActiveScene(shopScene);
-        shopComponent.Restock();
-        shopComponent.Show();
+        shopComponent.Show(p1Score, p2Score);
     }
 
     public void OnShopEnd()

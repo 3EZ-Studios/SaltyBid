@@ -9,6 +9,8 @@ public class ShopScene : MonoBehaviour
     public Canvas canvas;
     
     private FightState fightState;
+    private ShopInventory p1Inventory;
+    private ShopInventory p2Inventory;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,9 @@ public class ShopScene : MonoBehaviour
         fightState = GameObject.FindWithTag("FightState").GetComponent<FightState>();
         fightState.SetShopComponent(GetComponent<ShopScene>());
         
+        p1Inventory = new ShopInventory(fightState.GetRoundsToWin());
+        p2Inventory = new ShopInventory(fightState.GetRoundsToWin());
+
         foreach (Transform tf in canvas.transform)
         {
             tf.gameObject.SetActive(false);
@@ -33,18 +38,15 @@ public class ShopScene : MonoBehaviour
         }
     }
 
-    public void Show()
+    public void Show(int p1Score, int p2Score)
     {
+        // construct shelf display using inventory.Get()
+
         foreach (Transform tf in canvas.transform)
         {
             tf.gameObject.SetActive(true);
         }
         gameObject.SetActive(true);
-    }
-
-    public void Restock()
-    {
-
     }
 
     void OnShopComplete()
