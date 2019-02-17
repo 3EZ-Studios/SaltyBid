@@ -1,0 +1,45 @@
+{
+    "name": "Controls1",
+    "maps": [
+        {
+            "name": "ActionMap1",
+            "id": "1c38d094-7ca2-42cd-ba35-13b8d17e9286",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "id": "98f34600-4385-4fa7-b65a-b8eb42dda2ea",
+                    "expectedControlLayout": "",
+                    "bindings": []
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Press(pressPoint=1.06)",
+                    "processors": "",
+                    "groups": "ControlScheme",
+                    "action": "Jump",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "ControlScheme",
+            "basedOn": "",
+            "bindingGroup": "ControlScheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

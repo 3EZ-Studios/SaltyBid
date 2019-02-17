@@ -9,15 +9,9 @@ using UnityEngine.Experimental.Input;
 public class InputBuffer
 {
     public ConcurrentQueue<Consumable> fifoBuff = new ConcurrentQueue<Consumable>();
+    public Keyboard device = null;
 
-    //intercept all incoming keystroke events and push them into the buffer (one buffer per user)
-    /// <summary>
-    /// Character Movement (on keyboard)
-    ///     (U,F,D,B) are assumed to be wdsa, respectively
-    ///     (Uf,Df,Ub,Db)  --> ec,shift,q 
-    ///      Neutral is if no keys are being pressed
-    /// </summary>
-    /// 
+   // public InputBuffer() { }
 
    public bool pushInput(Consumable input)
     {

@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         }
 
         //fill buff
-        buff.pollKeys();
+        //buff.pollKeys();
 
 
         //var input = Input.GetAxis("Horizontal");

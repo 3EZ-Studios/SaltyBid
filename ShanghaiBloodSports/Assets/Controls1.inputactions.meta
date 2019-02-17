@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2e863a61498dcda4699521fa36d7b037
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: <root>
+    11400002: ActionMap1/Jump
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: e2fdc6edf8744b38b702a2a5ee3541b2, type: 3}
+  generateWrapperCode: 0
+  wrapperCodePath: Controls1Script
+  wrapperClassName: Controls1
+  wrapperCodeNamespace: Controls1
+  generateActionEvents: 1
+  generateInterfaces: 1
+  actionGuids: []
+  actionMapGuids: []

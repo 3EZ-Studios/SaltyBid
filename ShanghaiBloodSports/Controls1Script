@@ -1,0 +1,128 @@
+// GENERATED AUTOMATICALLY FROM 'Assets/Controls1.inputactions'
+
+using System;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Experimental.Input;
+
+
+namespace Controls1
+{
+    [Serializable]
+    public class Controls1 : InputActionAssetReference
+    {
+        public Controls1()
+        {
+        }
+        public Controls1(InputActionAsset asset)
+            : base(asset)
+        {
+        }
+        private bool m_Initialized;
+        private void Initialize()
+        {
+            // ActionMap1
+            m_ActionMap1 = asset.GetActionMap("ActionMap1");
+            m_ActionMap1_Jump = m_ActionMap1.GetAction("Jump");
+            if (m_ActionMap1JumpActionStarted != null)
+                m_ActionMap1_Jump.started += m_ActionMap1JumpActionStarted.Invoke;
+            if (m_ActionMap1JumpActionPerformed != null)
+                m_ActionMap1_Jump.performed += m_ActionMap1JumpActionPerformed.Invoke;
+            if (m_ActionMap1JumpActionCancelled != null)
+                m_ActionMap1_Jump.cancelled += m_ActionMap1JumpActionCancelled.Invoke;
+            m_Initialized = true;
+        }
+        private void Uninitialize()
+        {
+            if (m_ActionMap1ActionsCallbackInterface != null)
+            {
+                ActionMap1.SetCallbacks(null);
+            }
+            m_ActionMap1 = null;
+            m_ActionMap1_Jump = null;
+            if (m_ActionMap1JumpActionStarted != null)
+                m_ActionMap1_Jump.started -= m_ActionMap1JumpActionStarted.Invoke;
+            if (m_ActionMap1JumpActionPerformed != null)
+                m_ActionMap1_Jump.performed -= m_ActionMap1JumpActionPerformed.Invoke;
+            if (m_ActionMap1JumpActionCancelled != null)
+                m_ActionMap1_Jump.cancelled -= m_ActionMap1JumpActionCancelled.Invoke;
+            m_Initialized = false;
+        }
+        public void SetAsset(InputActionAsset newAsset)
+        {
+            if (newAsset == asset) return;
+            var ActionMap1Callbacks = m_ActionMap1ActionsCallbackInterface;
+            if (m_Initialized) Uninitialize();
+            asset = newAsset;
+            ActionMap1.SetCallbacks(ActionMap1Callbacks);
+        }
+        public override void MakePrivateCopyOfActions()
+        {
+            SetAsset(ScriptableObject.Instantiate(asset));
+        }
+        // ActionMap1
+        private InputActionMap m_ActionMap1;
+        private IActionMap1Actions m_ActionMap1ActionsCallbackInterface;
+        private InputAction m_ActionMap1_Jump;
+        [SerializeField] private ActionEvent m_ActionMap1JumpActionStarted;
+        [SerializeField] private ActionEvent m_ActionMap1JumpActionPerformed;
+        [SerializeField] private ActionEvent m_ActionMap1JumpActionCancelled;
+        public struct ActionMap1Actions
+        {
+            private Controls1 m_Wrapper;
+            public ActionMap1Actions(Controls1 wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Jump { get { return m_Wrapper.m_ActionMap1_Jump; } }
+            public ActionEvent JumpStarted { get { return m_Wrapper.m_ActionMap1JumpActionStarted; } }
+            public ActionEvent JumpPerformed { get { return m_Wrapper.m_ActionMap1JumpActionPerformed; } }
+            public ActionEvent JumpCancelled { get { return m_Wrapper.m_ActionMap1JumpActionCancelled; } }
+            public InputActionMap Get() { return m_Wrapper.m_ActionMap1; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled { get { return Get().enabled; } }
+            public InputActionMap Clone() { return Get().Clone(); }
+            public static implicit operator InputActionMap(ActionMap1Actions set) { return set.Get(); }
+            public void SetCallbacks(IActionMap1Actions instance)
+            {
+                if (m_Wrapper.m_ActionMap1ActionsCallbackInterface != null)
+                {
+                    Jump.started -= m_Wrapper.m_ActionMap1ActionsCallbackInterface.OnJump;
+                    Jump.performed -= m_Wrapper.m_ActionMap1ActionsCallbackInterface.OnJump;
+                    Jump.cancelled -= m_Wrapper.m_ActionMap1ActionsCallbackInterface.OnJump;
+                }
+                m_Wrapper.m_ActionMap1ActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    Jump.started += instance.OnJump;
+                    Jump.performed += instance.OnJump;
+                    Jump.cancelled += instance.OnJump;
+                }
+            }
+        }
+        public ActionMap1Actions @ActionMap1
+        {
+            get
+            {
+                if (!m_Initialized) Initialize();
+                return new ActionMap1Actions(this);
+            }
+        }
+        private int m_ControlSchemeSchemeIndex = -1;
+        public InputControlScheme ControlSchemeScheme
+        {
+            get
+
+            {
+                if (m_ControlSchemeSchemeIndex == -1) m_ControlSchemeSchemeIndex = asset.GetControlSchemeIndex("ControlScheme");
+                return asset.controlSchemes[m_ControlSchemeSchemeIndex];
+            }
+        }
+        [Serializable]
+        public class ActionEvent : UnityEvent<InputAction.CallbackContext>
+        {
+        }
+    }
+    public interface IActionMap1Actions
+    {
+        void OnJump(InputAction.CallbackContext context);
+    }
+}
