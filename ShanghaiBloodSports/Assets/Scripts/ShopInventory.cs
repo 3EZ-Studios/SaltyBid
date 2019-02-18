@@ -12,20 +12,19 @@ public class ShopInventory
 
     public ShopInventory(int rounds)
     {
-        // load all trinkets here
-        var allTrinkets = new List<Trinket>();
-        possibleTrinkets = new Dictionary<int, List<Trinket>>();
-
-        foreach (Trinket trinket in allTrinkets)
-        {
-            if (!possibleTrinkets.ContainsKey(trinket.shelfNumber))
-            {
-                possibleTrinkets.Add(trinket.shelfNumber, new List<Trinket>());
-            }
-            possibleTrinkets[trinket.shelfNumber].Add(trinket);
-        }
-
+        LoadAll();
         Stock(rounds);
+    }
+
+    private void LoadAll()
+    {
+        possibleTrinkets = Resources.LoadAll<Trinket>("")
+            .ToList()
+            .GroupBy(trinket => trinket.Shelf)
+            .ToDictionary(
+                group => group.Key,
+                group => group.ToList()
+            );
     }
 
     private void Stock(int rounds)
