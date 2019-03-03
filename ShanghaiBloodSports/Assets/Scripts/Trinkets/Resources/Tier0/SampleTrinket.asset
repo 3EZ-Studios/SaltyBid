@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e90816f75c161408e0aaf278077000, type: 3}
   m_Name: SampleTrinket
   m_EditorClassIdentifier: 
+  _label: 
+  _description: 
+  _shelf: 0
+  _sprite: {fileID: 21300000, guid: 1b525525562130240b21162e48477cda, type: 3}

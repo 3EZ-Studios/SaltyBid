@@ -35,7 +35,22 @@ public class ShopInventory
         {
             if (possibleTrinkets.ContainsKey(i))
             {
-                shelves.Add(possibleTrinkets[i].Shuffle().Take(TRINKETS_PER_SHELF).ToList());
+                var shelf = possibleTrinkets[i].Shuffle().Take(TRINKETS_PER_SHELF).ToList();
+                while (shelf.Count < TRINKETS_PER_SHELF)
+                {
+                    shelf.Add(null);
+                }
+
+                shelves.Add(shelf);
+            }
+            else
+            {
+                var shelf = new List<Trinket>();
+                while (shelf.Count < TRINKETS_PER_SHELF)
+                {
+                    shelf.Add(null);
+                }
+                shelves.Add(shelf);
             }
         }
     }
@@ -43,5 +58,16 @@ public class ShopInventory
     public List<List<Trinket>> Get(int start, int count)
     {
         return shelves.GetRange(start, count);
+    }
+
+    public Trinket Buy(int shelf, int index)
+    {
+        Trinket trinket = shelves[shelf][index];
+        if (trinket != null)
+        {
+            shelves[shelf][index] = null;
+            return trinket;
+        }
+        return null;
     }
 }
