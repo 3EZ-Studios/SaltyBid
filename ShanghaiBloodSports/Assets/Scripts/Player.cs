@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float speed = 3f;
     private Rigidbody2D rb;
     private Animator animator;
+    private FightScene fightComponent;
     private State state = State.NEUTRAL;
     private bool grounded = false;
 
@@ -15,76 +16,80 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        fightComponent = transform.parent.gameObject.GetComponent<FightScene>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var input = Input.GetAxis("Horizontal");
-        var movement = input * speed;
+        if (fightComponent.IsFightActive())
+        {
+            var input = Input.GetAxis("Horizontal");
+            var movement = input * speed;
 
-        if (!grounded)
-        {
-            state = State.MIDAIR;
-        }
-        else if (input < 0)
-        {
-            state = State.BACK_WALK;
-        }
-        else if (input > 0)
-        {
-            state = State.FORWARD_WALK;
-        }
-        else
-        {
-            state = State.NEUTRAL;
-        }
-
-        UpdateAnimator();
-
-        rb.velocity = new Vector3(movement, rb.velocity.y, 0);
-
-        if (Input.GetKeyDown(KeyCode.Space) && state != State.MIDAIR)
-        {
-            rb.AddForce(new Vector3(0, 200, 0));
-        }
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("neutral"))
-        {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (!grounded)
             {
-                animator.SetTrigger("punch");
+                state = State.MIDAIR;
+            }
+            else if (input < 0)
+            {
+                state = State.BACK_WALK;
+            }
+            else if (input > 0)
+            {
+                state = State.FORWARD_WALK;
+            }
+            else
+            {
+                state = State.NEUTRAL;
             }
 
-            if (Input.GetKeyDown(KeyCode.K))
+            UpdateAnimator();
+
+            rb.velocity = new Vector3(movement, rb.velocity.y, 0);
+
+            if (Input.GetKeyDown(KeyCode.Space) && state != State.MIDAIR)
             {
-                animator.SetTrigger("low_kick");
+                rb.AddForce(new Vector3(0, 200, 0));
             }
 
-            if (Input.GetKeyDown(KeyCode.I))
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("neutral"))
             {
-                animator.SetTrigger("high_kick");
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    animator.SetTrigger("punch");
+                }
+
+                if (Input.GetKeyDown(KeyCode.K))
+                {
+                    animator.SetTrigger("low_kick");
+                }
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    animator.SetTrigger("high_kick");
+                }
+
+                if (Input.GetKey(KeyCode.O))
+                {
+                    animator.SetBool("high_block", true);
+                }
+
+                if (Input.GetKey(KeyCode.L))
+                {
+                    animator.SetBool("low_block", true);
+                }
             }
 
-            if (Input.GetKey(KeyCode.O))
+            if (!Input.GetKey(KeyCode.O))
             {
-                animator.SetBool("high_block", true);
+                animator.SetBool("high_block", false);
             }
 
-            if (Input.GetKey(KeyCode.L))
+            if (!Input.GetKey(KeyCode.L))
             {
-                animator.SetBool("low_block", true);
+                animator.SetBool("low_block", false);
             }
-        }
-
-        if (!Input.GetKey(KeyCode.O))
-        {
-            animator.SetBool("high_block", false);
-        }
-
-        if (!Input.GetKey(KeyCode.L))
-        {
-            animator.SetBool("low_block", false);
         }
     }
 

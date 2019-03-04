@@ -2,7 +2,8 @@
 using UnityEditor;
 using Assets.Scripts.Events;
 
-public class SampleTrinket : Trinket
+[CreateAssetMenu(menuName = "Trinket/SampleTier2")]
+public class SampleTier2 : Trinket
 {
     private Sprite sprite;
     private EventHandler handler = new Handler();

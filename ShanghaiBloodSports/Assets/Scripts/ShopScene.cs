@@ -82,18 +82,24 @@ public class ShopScene : MonoBehaviour
 
     private void P1PickTrinket(int index)
     {
-        Trinket picked = p1Inventory.Buy(fightState.p1Score, index);
-        // attach trinket to player, then...
-        p1Picked = picked != null;
-        CheckShopComplete();
+        if (!p1Picked)
+        {
+            Trinket picked = p1Inventory.Buy(fightState.p1Score, index);
+            // attach trinket to player, then...
+            p1Picked = picked != null;
+            CheckShopComplete();
+        }
     }
 
     private void P2PickTrinket(int index)
     {
-        Trinket picked = p2Inventory.Buy(fightState.p2Score, index);
-        // attach trinket to player, then...
-        p2Picked = picked != null;
-        CheckShopComplete();
+        if (!p2Picked)
+        {
+            Trinket picked = p2Inventory.Buy(fightState.p2Score, index);
+            // attach trinket to player, then...
+            p2Picked = picked != null;
+            CheckShopComplete();
+        }
     }
 
     public void Show(int p1Score, int p2Score)
