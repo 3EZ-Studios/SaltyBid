@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     private Rigidbody2D rigidBody;
     private bool grounded = false;
     private MockInputBuffer inputBuffer;
+    private InputBuffer experimentalInputBuffer;
 
     public InputAction movementAction;
 
@@ -51,15 +52,15 @@ public class Character : MonoBehaviour
 
     void Awake()
     {
-        movementAction.performed += ctx => inputBuffer.fifo.Enqueue(ctx.ReadValue<Vector2>());
+        movementAction.performed += ctx => experimentalInputBuffer.fifo.Enqueue(ctx.ReadValue<Vector2>());
     }
 
     // Start is called before the first frame update
     void Start()
     {
         Opponent = FindObjectsOfType<Character>().Where(c => c != this).Single();
-        inputBuffer = new MockInputBuffer(); 
-        //GetComponent<MockInputBuffer>();
+        experimentalInputBuffer = new InputBuffer(); 
+        inputBuffer = GetComponent<MockInputBuffer>();
 
         rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -69,7 +70,7 @@ public class Character : MonoBehaviour
     {
 
         Vector2 result;
-        if (inputBuffer.fifo.TryDequeue(out result))
+        if (experimentalInputBuffer.fifo.TryDequeue(out result))
         {
             doMovement(result);
         }
@@ -81,12 +82,12 @@ public class Character : MonoBehaviour
         else if (inputBuffer?.Peek(KeyCode.A) ?? false)
         {
             CurrentState = State.BACK_WALK;
-          //  rigidBody.velocity = new Vector3(-1 * speed, rigidBody.velocity.y, 0);
+            rigidBody.velocity = new Vector3(-1 * speed, rigidBody.velocity.y, 0);
         }
         else if (inputBuffer?.Peek(KeyCode.D) ?? false)
         {
             CurrentState = State.FORWARD_WALK;
-           // rigidBody.velocity = new Vector3(speed, rigidBody.velocity.y, 0);
+            rigidBody.velocity = new Vector3(speed, rigidBody.velocity.y, 0);
         }
         else
         {
@@ -95,7 +96,7 @@ public class Character : MonoBehaviour
 
         if ((inputBuffer?.Match(KeyCode.Space) ?? false) && CurrentState != State.MIDAIR)
         {
-           // rigidBody.AddForce(new Vector3(0, 300, 0));
+            rigidBody.AddForce(new Vector3(0, 300, 0));
         }
     }
 

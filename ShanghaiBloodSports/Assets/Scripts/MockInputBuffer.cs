@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class MockInputBuffer : MonoBehaviour
 {
-    public  ConcurrentQueue<Vector2> fifo = new ConcurrentQueue<Vector2>();
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,4 +29,9 @@ public class MockInputBuffer : MonoBehaviour
     }
 
     
+}
+
+public class InputBuffer
+{
+    public ConcurrentQueue<Vector2> fifo = new ConcurrentQueue<Vector2>();
 }
