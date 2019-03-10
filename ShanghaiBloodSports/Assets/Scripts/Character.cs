@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Experimental.Input;
 
 public class Character : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Character : MonoBehaviour
     private Rigidbody2D rigidBody;
     private bool grounded = false;
     private MockInputBuffer inputBuffer;
+
+    public InputAction movementAction;
 
     public Character Opponent { get; private set; }
     public State CurrentState { get; private set; } = State.NEUTRAL;
@@ -36,17 +39,41 @@ public class Character : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        movementAction.Disable();   
+    }
+
+    void OnEnable()
+    {
+        movementAction.Enable();
+    }
+
+    void Awake()
+    {
+        movementAction.performed += ctx => inputBuffer.fifo.Enqueue(ctx.ReadValue<Vector2>());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Opponent = FindObjectsOfType<Character>().Where(c => c != this).Single();
-        inputBuffer = GetComponent<MockInputBuffer>();
+        inputBuffer = new MockInputBuffer(); 
+        //GetComponent<MockInputBuffer>();
+
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        Vector2 result;
+        if (inputBuffer.fifo.TryDequeue(out result))
+        {
+            doMovement(result);
+        }
+
         if (!grounded)
         {
             CurrentState = State.MIDAIR;
@@ -54,12 +81,12 @@ public class Character : MonoBehaviour
         else if (inputBuffer?.Peek(KeyCode.A) ?? false)
         {
             CurrentState = State.BACK_WALK;
-            rigidBody.velocity = new Vector3(-1 * speed, rigidBody.velocity.y, 0);
+          //  rigidBody.velocity = new Vector3(-1 * speed, rigidBody.velocity.y, 0);
         }
         else if (inputBuffer?.Peek(KeyCode.D) ?? false)
         {
             CurrentState = State.FORWARD_WALK;
-            rigidBody.velocity = new Vector3(speed, rigidBody.velocity.y, 0);
+           // rigidBody.velocity = new Vector3(speed, rigidBody.velocity.y, 0);
         }
         else
         {
@@ -68,8 +95,15 @@ public class Character : MonoBehaviour
 
         if ((inputBuffer?.Match(KeyCode.Space) ?? false) && CurrentState != State.MIDAIR)
         {
-            rigidBody.AddForce(new Vector3(0, 300, 0));
+           // rigidBody.AddForce(new Vector3(0, 300, 0));
         }
+    }
+
+    private void doMovement(Vector2 v)
+    {
+        Debug.Log($"{v.x},{v.y} @ {Time.time}");
+        rigidBody.velocity = new Vector3(speed * v.x , speed * v.y, 0);
+
     }
 
     private void OnCollisionEnter2D(Collision2D col)

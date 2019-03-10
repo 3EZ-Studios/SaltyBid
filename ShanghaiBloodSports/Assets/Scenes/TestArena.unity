@@ -1398,6 +1398,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Hitbox
       objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: movementAction.m_Name
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <XInputController>/leftStick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b049de0ed9494334c9222c97e396c52f, type: 3}
 --- !u!1001 &1110043086

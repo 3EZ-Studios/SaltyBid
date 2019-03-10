@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MockInputBuffer : MonoBehaviour
 {
+    public  ConcurrentQueue<Vector2> fifo = new ConcurrentQueue<Vector2>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,4 +29,6 @@ public class MockInputBuffer : MonoBehaviour
     {
         return Input.GetKey(key);
     }
+
+    
 }
