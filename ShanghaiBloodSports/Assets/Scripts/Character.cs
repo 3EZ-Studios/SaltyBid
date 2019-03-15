@@ -57,7 +57,6 @@ public class Character : MonoBehaviour
     void Awake()
     {
 
-
         movementAction.performed += ctx =>
         {
             Vector2 rawValue = ctx.ReadValue<Vector2>();

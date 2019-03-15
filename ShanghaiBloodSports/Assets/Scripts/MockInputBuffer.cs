@@ -59,7 +59,7 @@ public class InputBuffer
         {
             return "U";
         }
-        else if (v.x <= thresholdFar & v.y <= Math.Abs(thresholdNear))
+        else if (v.y <= -thresholdFar & v.x <= Math.Abs(thresholdNear))
         {
             return "D";
         }
