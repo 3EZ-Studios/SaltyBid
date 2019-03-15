@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
     private InputBuffer experimentalInputBuffer;
 
     public InputAction movementAction;
+    public InputAction keyboardMovementAction;
 
     public Character Opponent { get; private set; }
     public State CurrentState { get; private set; } = State.NEUTRAL;
@@ -43,16 +44,19 @@ public class Character : MonoBehaviour
 
     void OnDisable()
     {
-        movementAction.Disable();   
+        movementAction.Disable();
+        keyboardMovementAction.Disable();
     }
 
     void OnEnable()
     {
         movementAction.Enable();
+        keyboardMovementAction.Enable();
     }
 
     void Awake()
     {
+
 
         movementAction.performed += ctx =>
         {
@@ -62,6 +66,8 @@ public class Character : MonoBehaviour
             experimentalInputBuffer.consumables.Enqueue(consumable);
 
         };
+
+        keyboardMovementAction.performed += ctx => experimentalInputBuffer.fifo.Enqueue(ctx.ReadValue<Vector2>());
 
     }
 
@@ -92,22 +98,16 @@ public class Character : MonoBehaviour
         else if (inputBuffer?.Peek(KeyCode.A) ?? false)
         {
             CurrentState = State.BACK_WALK;
-            rigidBody.velocity = new Vector3(-1 * speed, rigidBody.velocity.y, 0);
         }
         else if (inputBuffer?.Peek(KeyCode.D) ?? false)
         {
             CurrentState = State.FORWARD_WALK;
-            rigidBody.velocity = new Vector3(speed, rigidBody.velocity.y, 0);
         }
         else
         {
             CurrentState = State.NEUTRAL;
         }
 
-        if ((inputBuffer?.Match(KeyCode.Space) ?? false) && CurrentState != State.MIDAIR)
-        {
-            rigidBody.AddForce(new Vector3(0, 300, 0));
-        }
     }
 
     private void doMovement(Vector2 v)
