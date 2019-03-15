@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Moves;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,16 @@ public class Character : MonoBehaviour
 
     void Awake()
     {
-        movementAction.performed += ctx => experimentalInputBuffer.fifo.Enqueue(ctx.ReadValue<Vector2>());
+
+        movementAction.performed += ctx =>
+        {
+            Vector2 rawValue = ctx.ReadValue<Vector2>();
+            experimentalInputBuffer.fifo.Enqueue(rawValue);
+            String consumable = experimentalInputBuffer.VectorToConsumable(rawValue);
+            experimentalInputBuffer.consumables.Enqueue(consumable);
+
+        };
+
     }
 
     // Start is called before the first frame update
@@ -102,10 +112,16 @@ public class Character : MonoBehaviour
 
     private void doMovement(Vector2 v)
     {
-        Debug.Log($"{v.x},{v.y} @ {Time.time}");
+        String r2;
+        if (experimentalInputBuffer.consumables.TryDequeue(out r2))
+        {
+            Debug.Log($"{v.x},{v.y} @ {Time.time} with State: {r2}");
+        }
+
         rigidBody.velocity = new Vector3(speed * v.x , speed * v.y, 0);
 
     }
+
 
     private void OnCollisionEnter2D(Collision2D col)
     {
