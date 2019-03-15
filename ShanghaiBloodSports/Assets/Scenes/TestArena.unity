@@ -634,12 +634,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768249231}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.24, y: 4.76, z: 10}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1610259469}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012243110
 GameObject:
@@ -683,7 +683,7 @@ Transform:
   m_Children:
   - {fileID: 65818576}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1064786445
 PrefabInstance:
@@ -735,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 4764347267557237663, guid: b049de0ed9494334c9222c97e396c52f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4764347267557237663, guid: b049de0ed9494334c9222c97e396c52f,
         type: 3}
@@ -1418,6 +1418,11 @@ PrefabInstance:
       propertyPath: movementAction.m_SingletonActionBindings.Array.data[0].m_Path
       value: <XInputController>/leftStick
       objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_Name
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b049de0ed9494334c9222c97e396c52f, type: 3}
 --- !u!1001 &1110043086
@@ -1470,7 +1475,7 @@ PrefabInstance:
     - target: {fileID: 4764347267557237663, guid: b049de0ed9494334c9222c97e396c52f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4764347267557237663, guid: b049de0ed9494334c9222c97e396c52f,
         type: 3}
@@ -1496,6 +1501,121 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: movementAction.m_Name
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_Name
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[0].m_Name
+      value: Dpad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: Dpad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[3].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Keyboard Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/upArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/downArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/leftArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931033671868165058, guid: b049de0ed9494334c9222c97e396c52f,
+        type: 3}
+      propertyPath: keyboardMovementAction.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Keyboard>/rightArrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b049de0ed9494334c9222c97e396c52f, type: 3}
@@ -1553,7 +1673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1607216264
 MonoBehaviour:
@@ -1572,6 +1692,12 @@ MonoBehaviour:
   fightSceneName: TestArena
   shopSceneName: Shop
   fightComponent: {fileID: 1809269215}
+--- !u!4 &1610259469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4764347267557237663, guid: b049de0ed9494334c9222c97e396c52f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1110043086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1809269214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1741,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1809269217
 MonoBehaviour:
