@@ -12,10 +12,6 @@ public class Character : MonoBehaviour
     private Rigidbody2D rigidBody;
     private bool grounded = false;
     private MockInputBuffer inputBuffer;
-    private InputBuffer experimentalInputBuffer;
-
-    public InputAction movementAction;
-    public InputAction keyboardMovementAction;
 
     public Character Opponent { get; private set; }
     public State CurrentState { get; private set; } = State.NEUTRAL;
@@ -42,39 +38,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    void OnDisable()
-    {
-        movementAction.Disable();
-        keyboardMovementAction.Disable();
-    }
-
-    void OnEnable()
-    {
-        movementAction.Enable();
-        keyboardMovementAction.Enable();
-    }
-
-    void Awake()
-    {
-
-        movementAction.performed += ctx =>
-        {
-            Vector2 rawValue = ctx.ReadValue<Vector2>();
-            experimentalInputBuffer.fifo.Enqueue(rawValue);
-            String consumable = experimentalInputBuffer.VectorToConsumable(rawValue);
-            experimentalInputBuffer.consumables.Enqueue(consumable);
-
-        };
-
-        keyboardMovementAction.performed += ctx => experimentalInputBuffer.fifo.Enqueue(ctx.ReadValue<Vector2>());
-
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         Opponent = FindObjectsOfType<Character>().Where(c => c != this).Single();
-        experimentalInputBuffer = new InputBuffer(); 
         inputBuffer = GetComponent<MockInputBuffer>();
 
         rigidBody = GetComponent<Rigidbody2D>();
@@ -83,13 +50,6 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Vector2 result;
-        if (experimentalInputBuffer.fifo.TryDequeue(out result))
-        {
-            doMovement(result);
-        }
-
         if (!grounded)
         {
             CurrentState = State.MIDAIR;
@@ -106,20 +66,9 @@ public class Character : MonoBehaviour
         {
             CurrentState = State.NEUTRAL;
         }
-
     }
 
-    private void doMovement(Vector2 v)
-    {
-        String r2;
-        if (experimentalInputBuffer.consumables.TryDequeue(out r2))
-        {
-            Debug.Log($"{v.x},{v.y} @ {Time.time} with State: {r2}");
-        }
 
-        rigidBody.velocity = new Vector3(speed * v.x , speed * v.y, 0);
-
-    }
 
 
     private void OnCollisionEnter2D(Collision2D col)

@@ -142,6 +142,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d2198a5fcc4c5478e3d1b77cabbeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &27666347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27666339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aebd12eb01f75294eaf22719c1f806bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementAction:
+    m_Name: Movement
+    m_ExpectedControlLayout: 
+    m_Id: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Path: <XInputControllerWindows>/leftStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 0
+  keyboardMovementAction:
+    m_Name: Keyboard Movement
+    m_ExpectedControlLayout: 
+    m_Id: 
+    m_SingletonActionBindings: []
+  speed: 3
+--- !u!114 &27666348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27666339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521b8ab501ec4b242bd95218278060f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &65818575
 GameObject:
   m_ObjectHideFlags: 0
